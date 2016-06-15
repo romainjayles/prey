@@ -1,6 +1,7 @@
 #Others
 *~
 *#
+build/*
 
 # Compiled Object files
 *.slo
