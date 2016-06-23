@@ -5,4 +5,6 @@
 #ifndef PREY_PREY_H
 #define PREY_PREY_H
 
+void test();
+
 #endif //PREY_PREY_H
