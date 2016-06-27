@@ -6,6 +6,9 @@
 #ifndef PREY_ORIENTATION_MANAGER_H
 #define PREY_ORIENTATION_MANAGER_H
 
+#include <Orientation_manager.h>
+#include <Gyroscope_GY_521.h>
+#include <Accelerometer.h>
 #include <thread>
 
 using namespace std;
@@ -26,6 +29,8 @@ private:
      */
     int update_frequency_ms;
 
+    //Accelerometer accelerometer;
+    Gyroscope_GY_521 gyroscope;
     thread orientation_manager_task;
 
 public:

@@ -18,7 +18,6 @@ int main(int argv, char **argc){
     Prey prey;
     //Initialization of the uav
     prey.init();
-    for(int i=0; i<1000000;i++);
     printf(".. end");
     //Stopping the uav
     prey.teardown();
