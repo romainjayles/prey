@@ -6,6 +6,8 @@
 #define PREY_GYROSCOPE_H
 
 #include <thread>
+#include <mutex>
+
 using namespace std;
 
 class Gyroscope{
@@ -33,9 +35,15 @@ protected:
     virtual double _get_z_rotation() = 0;
 
     thread gyroscope_task;
+    static mutex gyroscope_lock;
 
 public:
     Gyroscope();
+
+    /**
+     * The copy method (used for threading purpose)
+     */
+
 
     /**
      * Init the gyroscope class
