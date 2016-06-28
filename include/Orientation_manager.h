@@ -8,7 +8,7 @@
 
 #include <Orientation_manager.h>
 #include <Gyroscope_GY_521.h>
-#include <Accelerometer.h>
+#include <Accelerometer_GY_521.h>
 #include <thread>
 
 using namespace std;
@@ -31,6 +31,7 @@ private:
 
     //Accelerometer accelerometer;
     Gyroscope_GY_521 gyroscope;
+    Accelerometer_GY_521 accelerometer;
     thread orientation_manager_task;
 
 public:

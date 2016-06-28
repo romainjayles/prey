@@ -1,5 +1,6 @@
 #include <Orientation_manager.h>
 #include <Gyroscope_GY_521.h>
+#include <Accelerometer_GY_521.h>
 #include <config.h>
 #include <unistd.h>
 
@@ -16,7 +17,7 @@ int Orientation_manager::init(int update_frequency_ms){
     // We launch the accelerometer with the right update value
     //accelerometer = Accelerometer();
     gyroscope = Gyroscope_GY_521();
-    //accelerometer.init(ACCELEROMETER_UPDATE_FREQUENCY_MS);
+    accelerometer.init(ACCELEROMETER_UPDATE_FREQUENCY_MS);
     gyroscope.init(GYROSCOPE_UPDATE_FREQUENCY_MS);
     orientation_manager_task = thread(&Orientation_manager::_main_task, this);
 }
