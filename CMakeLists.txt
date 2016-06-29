@@ -8,3 +8,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 
 include_directories(include)
 add_subdirectory (source)
+
+file(COPY script/ DESTINATION script/)
