@@ -41,7 +41,7 @@ int Accelerometer::get_current_values(double *x_acceleration_value, double *y_ac
 
 void Accelerometer::_main_task() {
     while (true) {
-        printf("Accel\n");
+        //printf("Accel\n");
         accelerometer_lock.lock();
         x_acceleration_value = _get_x_acceleration();
         y_acceleration_value = _get_y_acceleration();

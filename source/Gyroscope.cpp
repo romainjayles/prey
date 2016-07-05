@@ -40,7 +40,7 @@ int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_v
 
 void Gyroscope::_main_task(){
     while(true){
-        printf("Gyro\n");
+        //printf("Gyro\n");
         gyroscope_lock.lock();
         x_rotation_value = _get_x_rotation();
         y_rotation_value = _get_y_rotation();
