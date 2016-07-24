@@ -10,6 +10,13 @@
 #include <Gyroscope_GY_521.h>
 #include <Accelerometer_GY_521.h>
 #include <thread>
+#ifdef MOCK
+#include <Gyroscope_GY_521_mock.h>
+#include <Accelerometer_GY_521_mock.h>
+#else
+#include <Gyroscope_GY_521.h>
+#include <Accelerometer_GY_521.h>
+#endif
 
 using namespace std;
 
@@ -30,8 +37,14 @@ private:
     int update_frequency_ms;
 
     //Accelerometer accelerometer;
+    #ifdef MOCK
+    Gyroscope_GY_521_mock gyroscope;
+    Accelerometer_GY_521_mock accelerometer;
+    #else
     Gyroscope_GY_521 gyroscope;
     Accelerometer_GY_521 accelerometer;
+    #endif
+
     thread orientation_manager_task;
 
 public:

@@ -1,8 +1,14 @@
 #include <Orientation_manager.h>
-#include <Gyroscope_GY_521.h>
-#include <Accelerometer_GY_521.h>
 #include <config.h>
 #include <unistd.h>
+
+#ifdef MOCK
+#include <Gyroscope_GY_521_mock.h>
+#include <Accelerometer_GY_521_mock.h>
+#else
+#include <Gyroscope_GY_521.h>
+#include <Accelerometer_GY_521.h>
+#endif
 
 
 Orientation_manager::Orientation_manager(){
@@ -16,7 +22,7 @@ int Orientation_manager::init(int update_frequency_ms){
     this->update_frequency_ms = update_frequency_ms;
     // We launch the accelerometer with the right update value
     //accelerometer = Accelerometer();
-    gyroscope = Gyroscope_GY_521();
+    //gyroscope = Gyroscope_GY_521();
     accelerometer.init(ACCELEROMETER_UPDATE_FREQUENCY_MS);
     gyroscope.init(GYROSCOPE_UPDATE_FREQUENCY_MS);
     orientation_manager_task = thread(&Orientation_manager::_main_task, this);
