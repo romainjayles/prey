@@ -2,6 +2,7 @@
 #define PREY_GYROSCOPE_GY_521_H
 
 #include <Gyroscope.h>
+#include <stdint.h>
 
 class Gyroscope_GY_521:public Gyroscope{
 
