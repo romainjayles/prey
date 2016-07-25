@@ -7,8 +7,6 @@
 #define PREY_ORIENTATION_MANAGER_H
 
 #include <Orientation_manager.h>
-#include <Gyroscope_GY_521.h>
-#include <Accelerometer_GY_521.h>
 #include <thread>
 #ifdef MOCK
 #include <Gyroscope_GY_521_mock.h>
