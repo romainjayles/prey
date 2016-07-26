@@ -4,13 +4,6 @@ if(MOCK)
     add_definitions(-DMOCK)
     set(executable_dep ${executable_dep} Accelerometer_GY_521_mock.cpp Gyroscope_GY_521_mock.cpp)
 else(NOT MOCK)
-
-    find_library(WIRINGPI_LIBRARIES NAMES wiringPi)
-    find_path(WIRINGPI_INCLUDE_DIRS NAMES wiringPi.h)
-
-    include(FindPackageHandleStandardArgs)
-
-    find_package_handle_standard_args(wiringPi DEFAULT_MSG WIRINGPI_LIBRARIES WIRINGPI_INCLUDE_DIRS)
     find_package(WiringPi REQUIRED)
 
     include_directories(${WIRINGPI_INCLUDE_DIRS})
@@ -27,5 +20,5 @@ target_link_libraries( accel_gyro_visualisation ${CMAKE_THREAD_LIBS_INIT} )
 
 if (NOT MOCK)
     target_link_libraries( uav_prey ${WIRINGPI_LIBRARIES})
-    target_link_libraries( uav_prey ${WIRINGPI_LIBRARIES})
+    target_link_libraries( accel_gyro_visualisation ${WIRINGPI_LIBRARIES})
 endif ()
