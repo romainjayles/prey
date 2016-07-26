@@ -24,7 +24,7 @@
 class Accelerometer_GY_521:public Accelerometer{
 
     //TODO : change
-    int sensitivity = ACCEL_SENSITIVITY_16;
+    double sensitivity = ACCEL_SENSITIVITY_2;
     int fd;
 
     int _init_accelerometer_sensor();

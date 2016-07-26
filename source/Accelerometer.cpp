@@ -23,7 +23,13 @@ Accelerometer::Accelerometer() {
  */
 int Accelerometer::init(int update_frequency_ms) {
     this->update_frequency_ms = update_frequency_ms;
+    if(_init_accelerometer_sensor() == -1){
+        //TODO replace by logger + custom error code
+        printf("Error, impossible to init Accelerometer sensor\n");
+        return -1;
+    }
     accelerometer_task = thread(&Accelerometer::_main_task, this);
+    return 0;
 }
 
 int Accelerometer::teardown() {

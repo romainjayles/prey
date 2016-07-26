@@ -11,10 +11,10 @@ int Accelerometer_GY_521::_init_accelerometer_sensor(){
         return -1;
     }
     //See the manual, but we put the sleep mode at 0
+    printf("I2C set up successfully\n");
     printf("Config : %x\n", wiringPiI2CReadReg8(fd, CONFIG_REG));
     wiringPiI2CWriteReg8(fd, CONFIG_REG, 0);
     printf("Setup success\n");
-
     return 0;
 }
 
