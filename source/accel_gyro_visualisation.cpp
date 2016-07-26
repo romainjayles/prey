@@ -36,8 +36,11 @@ int main(int argv, char **argc){
         printf("Error, the update frequency of measurement should be specified in argument\n");
     }else{
         update = atoi(argc[1]);
-        accelerometer.init(update);
-        gyroscope.init(update);
+        if(accelerometer.init(update) == -1)
+            return -1;
+
+        if(gyroscope.init(update) == -1)
+            return -1;
         while(true){
             accelerometer.get_current_values(&accel_x, &accel_y, &accel_z);
             gyroscope.get_current_values(&gyro_x, &gyro_y, &gyro_z);
