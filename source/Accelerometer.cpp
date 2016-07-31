@@ -28,12 +28,16 @@ int Accelerometer::init(int update_frequency_ms) {
         printf("Error, impossible to init Accelerometer sensor\n");
         return -1;
     }
+    run = true;
     accelerometer_task = thread(&Accelerometer::_main_task, this);
     return 0;
 }
 
 int Accelerometer::teardown() {
-    //stop
+    printf("Terminate Accelerometer thread");
+    run = false;
+    accelerometer_task.join();
+    printf("Accelerometer thread terminated");
 }
 
 int Accelerometer::get_current_values(double *x_acceleration_value, double *y_acceleration_value, double *z_acceleration_value) {
@@ -46,7 +50,7 @@ int Accelerometer::get_current_values(double *x_acceleration_value, double *y_ac
 }
 
 void Accelerometer::_main_task() {
-    while (true) {
+    while (run) {
         //printf("Accel\n");
         accelerometer_lock.lock();
         x_acceleration_value = _get_x_acceleration();

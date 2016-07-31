@@ -26,7 +26,10 @@ int Gyroscope::init(int update_frequency_ms){
 }
 
 int Gyroscope::teardown(){
-    //stop
+    printf("Terminate Gyroscope thread");
+    run = false;
+    gyroscope_task.join();
+    printf("Gyroscope thread terminated");
 }
 
 int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_value, double *z_rotation_value){
@@ -39,7 +42,7 @@ int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_v
 }
 
 void Gyroscope::_main_task(){
-    while(true){
+    while(run){
         //printf("Gyro\n");
         gyroscope_lock.lock();
         x_rotation_value = _get_x_rotation();

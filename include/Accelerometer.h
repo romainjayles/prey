@@ -35,6 +35,7 @@ protected:
     virtual double _get_z_acceleration() = 0;
 
     thread accelerometer_task;
+    bool run;
     static mutex accelerometer_lock;
 
 public:

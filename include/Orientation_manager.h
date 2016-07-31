@@ -44,6 +44,7 @@ private:
     #endif
 
     thread orientation_manager_task;
+    bool run;
 
 public:
     Orientation_manager();

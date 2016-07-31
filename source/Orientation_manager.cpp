@@ -25,6 +25,7 @@ int Orientation_manager::init(int update_frequency_ms){
     //gyroscope = Gyroscope_GY_521();
     accelerometer.init(ACCELEROMETER_UPDATE_FREQUENCY_MS);
     gyroscope.init(GYROSCOPE_UPDATE_FREQUENCY_MS);
+    run = true;
     orientation_manager_task = thread(&Orientation_manager::_main_task, this);
 }
 
@@ -35,14 +36,17 @@ int Orientation_manager::get_orientation(double *tilt, double *pitch, double *ya
 }
 
 int Orientation_manager::teardown(){
-    //TODO : join ?
+    printf("Terminate orientation_manager thread\n");
+    accelerometer.teardown();
     gyroscope.teardown();
+    run = false;
     orientation_manager_task.join();
+    printf("orientation_manager thread terminated\n");
 }
 
 
 void Orientation_manager::_main_task(){
-    while(true){
+    while(run){
         printf("Tilt : %f\n", tilt);
         usleep(update_frequency_ms*1000);
     }

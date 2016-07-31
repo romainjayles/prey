@@ -13,11 +13,13 @@ Prey::Prey(){
 }
 
 int Prey::init(){
+    printf("Launching orientation manager\n");
     orientation_manager = Orientation_manager();
     orientation_manager.init(ORIENTATION_MANAGER_UPDATE_FREQUENCY_MS);
-    printf("Test !!!");
 }
 
 int Prey::teardown(){
+    printf("Terminate Prey\n");
     orientation_manager.teardown();
+    printf("Prey terminated\n");
 }

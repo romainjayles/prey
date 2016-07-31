@@ -35,6 +35,7 @@ protected:
     virtual double _get_z_rotation() = 0;
 
     thread gyroscope_task;
+    bool run;
     static mutex gyroscope_lock;
 
 public:
