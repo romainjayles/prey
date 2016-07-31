@@ -10,7 +10,7 @@ else(NOT MOCK)
     set(executable_dep ${executable_dep} Accelerometer_GY_521.cpp Gyroscope_GY_521.cpp)
 endif()
 
-set(executable_dep ${executable_dep} Prey.cpp Orientation_manager.cpp Gyroscope.cpp  Accelerometer.cpp)
+set(executable_dep ${executable_dep} Prey.cpp Orientation_manager.cpp Gyroscope.cpp  Accelerometer.cpp Logger.cpp)
 
 add_executable(uav_prey main.cpp ${executable_dep})
 add_executable(accel_gyro_visualisation accel_gyro_visualisation.cpp ${executable_dep})
