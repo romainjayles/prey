@@ -9,9 +9,10 @@
 #include <stdlib.h>
 #include <mutex>
 
+#include <config.h>
 using namespace std;
 
-#define MAX_FILENAME_SIZE 512
+
 
 typedef enum {
     LOG_ERROR = 0,
@@ -28,6 +29,7 @@ class Logger{
 
 private:
     char log_filename[MAX_FILENAME_SIZE+1];
+    char logger_buffer[MAX_LOG_MESSAGE_SIZE];
     log_level current_log_level;
 
     static mutex logger_lock;
@@ -40,7 +42,7 @@ public:
     Logger(log_level level, char* log_filename = NULL);
 
     /* The two lasts arguments are used to init the logger */
-    void log(char* log_message, log_level actual_log);
+    void log(log_level message_level, const char* log_message, ...);
 
 };
 #endif //PREY_LOGGER_H

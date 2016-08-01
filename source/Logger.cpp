@@ -5,9 +5,11 @@
 #include <Logger.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 
 #include <mutex>
+
 
 mutex Logger::logger_lock;
 
@@ -22,11 +24,15 @@ Logger::Logger(log_level level, char* log_filename){
         strcpy(this->log_filename, log_filename);
 }
 
-void Logger::log(char* log_message, log_level message_level){
+void Logger::log(log_level message_level, const char* log_message, ...){
+    va_list args;
     //TODO : add file logging and thread safe ?
     if(message_level <= current_log_level){
         logger_lock.lock();
-        printf("%s\n", log_message);
+        va_start(args, log_message);
+        vsnprintf(logger_buffer, MAX_LOG_MESSAGE_SIZE, log_message, args);
+        va_end(args);
+        printf("%s\n", logger_buffer);
         logger_lock.unlock();
     }
 
