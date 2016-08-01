@@ -6,6 +6,7 @@
 #define PREY_PREY_H
 
 #include <Orientation_manager.h>
+#include <Logger.h>
 
 /**
  * The different states of the uav
@@ -28,8 +29,11 @@ private:
 
     Orientation_manager orientation_manager;
 
+    Logger &logger;
+
+
 public:
-    Prey();
+    Prey(Logger &logger);
 
     int init();
 

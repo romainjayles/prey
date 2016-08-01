@@ -13,6 +13,9 @@ class Gyroscope_GY_521_mock:public Gyroscope{
 
     double _get_z_rotation();
 
+public:
+    using Gyroscope::Gyroscope;
+
 };
 
 #endif //PREY_GYROSCOPE_GY_521_MOCK_H

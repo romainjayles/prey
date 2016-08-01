@@ -7,6 +7,7 @@
 #define PREY_ORIENTATION_MANAGER_H
 
 #include <Orientation_manager.h>
+#include <Logger.h>
 #include <thread>
 #ifdef MOCK
 #include <Gyroscope_GY_521_mock.h>
@@ -22,6 +23,7 @@ class Orientation_manager
 {
 private:
 
+    Logger &logger;
     /**
      * The latest values of the orientation of the UAV
      */
@@ -47,7 +49,7 @@ private:
     bool run;
 
 public:
-    Orientation_manager();
+    Orientation_manager(Logger &logger);
 
     /**
      * Allow to init the class and its atributes

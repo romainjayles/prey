@@ -21,10 +21,11 @@
 
 int main(int argv, char **argc){
     int update;
+    Logger logger(LOG_INFO);
 
     #ifdef MOCK
-    Accelerometer_GY_521_mock accelerometer = Accelerometer_GY_521_mock();
-    Gyroscope_GY_521_mock gyroscope = Gyroscope_GY_521_mock();
+    Accelerometer_GY_521_mock accelerometer = Accelerometer_GY_521_mock(logger);
+    Gyroscope_GY_521_mock gyroscope = Gyroscope_GY_521_mock(logger);
     #else
     Accelerometer_GY_521 accelerometer = Accelerometer_GY_521();
     Gyroscope_GY_521 gyroscope = Gyroscope_GY_521();

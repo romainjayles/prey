@@ -13,6 +13,9 @@ class Accelerometer_GY_521_mock:public Accelerometer{
 
     double _get_z_acceleration();
 
+public:
+    using Accelerometer::Accelerometer;
+
 };
 
 #endif //PREY_ACCELEROMETER_GY_521_MOCK_H

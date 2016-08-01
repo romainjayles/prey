@@ -10,7 +10,7 @@
 //Initialization of the static variable
 mutex Gyroscope::gyroscope_lock;
 
-Gyroscope::Gyroscope(){
+Gyroscope::Gyroscope(Logger &logger): logger(logger){
     x_rotation_value = 0.0;
     y_rotation_value = 0.0;
     z_rotation_value = 0.0;
@@ -26,10 +26,10 @@ int Gyroscope::init(int update_frequency_ms){
 }
 
 int Gyroscope::teardown(){
-    printf("Terminate Gyroscope thread");
+    logger.log(LOG_INFO, "Terminate Gyroscope thread");
     run = false;
     gyroscope_task.join();
-    printf("Gyroscope thread terminated");
+    logger.log(LOG_INFO, "Gyroscope thread terminated");
 }
 
 int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_value, double *z_rotation_value){

@@ -5,6 +5,8 @@
 #ifndef PREY_ACCELEROMETER_H
 #define PREY_ACCELEROMETER_H
 
+#include <Logger.h>
+
 #include <thread>
 #include <mutex>
 
@@ -13,6 +15,7 @@ using namespace std;
 class Accelerometer{
 protected:
 
+    Logger &logger;
     /**
      * The last value acquired
      */
@@ -39,7 +42,7 @@ protected:
     static mutex accelerometer_lock;
 
 public:
-    Accelerometer();
+    explicit Accelerometer(Logger &logger);
 
     /**
      * The copy method (used for threading purpose)

@@ -5,6 +5,8 @@
 #ifndef PREY_GYROSCOPE_H
 #define PREY_GYROSCOPE_H
 
+#include <Logger.h>
+
 #include <thread>
 #include <mutex>
 
@@ -12,6 +14,8 @@ using namespace std;
 
 class Gyroscope{
 protected:
+
+    Logger &logger;
 
     /**
      * The last value acquired
@@ -39,7 +43,7 @@ protected:
     static mutex gyroscope_lock;
 
 public:
-    Gyroscope();
+    explicit Gyroscope(Logger &logger);
 
     /**
      * The copy method (used for threading purpose)

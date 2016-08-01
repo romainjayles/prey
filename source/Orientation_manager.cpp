@@ -1,4 +1,5 @@
 #include <Orientation_manager.h>
+#include <Logger.h>
 #include <config.h>
 #include <unistd.h>
 
@@ -11,7 +12,7 @@
 #endif
 
 
-Orientation_manager::Orientation_manager(){
+Orientation_manager::Orientation_manager(Logger &logger): logger(logger), accelerometer(logger), gyroscope(logger){
     tilt = 0.0;
     pitch = 0.0;
     yaw = 0.0;
@@ -36,18 +37,18 @@ int Orientation_manager::get_orientation(double *tilt, double *pitch, double *ya
 }
 
 int Orientation_manager::teardown(){
-    printf("Terminate orientation_manager thread\n");
+    logger.log(LOG_INFO, "Terminate orientation_manager thread");
     accelerometer.teardown();
     gyroscope.teardown();
     run = false;
     orientation_manager_task.join();
-    printf("orientation_manager thread terminated\n");
+    logger.log(LOG_INFO, "orientation_manager thread terminated");
 }
 
 
 void Orientation_manager::_main_task(){
     while(run){
-        printf("Tilt : %f\n", tilt);
+        logger.log(LOG_INFO, "Tilt : %f", tilt);
         usleep(update_frequency_ms*1000);
     }
 

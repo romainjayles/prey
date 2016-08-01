@@ -8,18 +8,17 @@
 
 #include <stdio.h>
 
-Prey::Prey(){
+Prey::Prey(Logger &logger): logger(logger), orientation_manager(logger){
     current_state = SLEEPING;
 }
 
 int Prey::init(){
-    printf("Launching orientation manager\n");
-    orientation_manager = Orientation_manager();
+    logger.log(LOG_INFO, "Launching orientation manager");
     orientation_manager.init(ORIENTATION_MANAGER_UPDATE_FREQUENCY_MS);
 }
 
 int Prey::teardown(){
-    printf("Terminate Prey\n");
+    logger.log(LOG_INFO, "Terminate Prey");
     orientation_manager.teardown();
-    printf("Prey terminated\n");
+    logger.log(LOG_INFO, "Prey terminated\n");
 }
