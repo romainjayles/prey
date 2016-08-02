@@ -7,14 +7,14 @@ int Accelerometer_GY_521::_init_accelerometer_sensor(){
 
     fd = wiringPiI2CSetup(GY_521_ADDRESS);
     if(fd == -1){
-        printf("Can't setup the I2C device for gy_521\n");
+        logger.log(LOG_ERROR, "Can't setup the I2C device for gy_521\n");
         return -1;
     }
     //See the manual, but we put the sleep mode at 0
-    printf("I2C set up successfully\n");
-    printf("Config : %x\n", wiringPiI2CReadReg8(fd, CONFIG_REG));
+    logger.log(LOG_INFO, "I2C set up successfully\n");
+    logger.log(LOG_DEBUG, "Config : %x\n", wiringPiI2CReadReg8(fd, CONFIG_REG));
     wiringPiI2CWriteReg8(fd, CONFIG_REG, 0);
-    printf("Setup success\n");
+    logger.log(LOG_INFO, "Setup success\n");
     return 0;
 }
 
