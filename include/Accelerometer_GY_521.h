@@ -37,6 +37,9 @@ class Accelerometer_GY_521:public Accelerometer{
 
     int16_t read_high_low_register(int8_t register_high, int8_t register_low);
 
+public:
+    using Accelerometer::Accelerometer;
+
 };
 
 #endif //PREY_ACCELEROMETER_GY_521_H
