@@ -22,6 +22,13 @@ Gyroscope::Gyroscope(Logger &logger): logger(logger){
  */
 int Gyroscope::init(int update_frequency_ms){
     this->update_frequency_ms = update_frequency_ms;
+    if(_init_gyroscope_sensor() == -1){
+        //TODO replace by logger + custom error code
+        logger.log(LOG_ERROR, "Error, impossible to init Gyroscope sensor");
+        return -1;
+    }
+    run = true;
+    this->update_frequency_ms = update_frequency_ms;
     gyroscope_task = thread(&Gyroscope::_main_task, this);
 }
 
