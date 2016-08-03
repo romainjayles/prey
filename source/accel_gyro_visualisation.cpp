@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <signal.h>
 
 #ifdef MOCK
 #include <Accelerometer_GY_521_mock.h>
@@ -19,8 +20,15 @@
 #endif
 
 
+static bool run;
+void handler(int v) {
+    run = false;
+}
+
+
 int main(int argv, char **argc){
     int update;
+    signal(SIGINT, handler);
     Logger logger(LOG_INFO);
 
     #ifdef MOCK
@@ -42,12 +50,16 @@ int main(int argv, char **argc){
 
         if(gyroscope.init(update) == -1)
             return -1;
-        while(true){
+
+        run = true;
+        while(run){
             accelerometer.get_current_values(&accel_x, &accel_y, &accel_z);
             gyroscope.get_current_values(&gyro_x, &gyro_y, &gyro_z);
             printf("%f %f %f %f %f %f\n", accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z);
             usleep(update*1000);
         }
+        accelerometer.teardown();
+        gyroscope.teardown();
     }
     return 0;
 }
