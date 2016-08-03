@@ -2,15 +2,15 @@
 #If we want to mock the hardware part with custom class (maybe not the best way to do)
 if(MOCK)
     add_definitions(-DMOCK)
-    set(executable_dep ${executable_dep} Accelerometer_GY_521_mock.cpp Gyroscope_GY_521_mock.cpp)
+    set(executable_dep ${executable_dep} Accelerometer/Accelerometer_GY_521_mock.cpp Gyroscope/Gyroscope_GY_521_mock.cpp)
 else(NOT MOCK)
     find_package(WiringPi REQUIRED)
 
     include_directories(${WIRINGPI_INCLUDE_DIRS})
-    set(executable_dep ${executable_dep} Accelerometer_GY_521.cpp Gyroscope_GY_521.cpp)
+    set(executable_dep ${executable_dep} Accelerometer/Accelerometer_GY_521.cpp Accelerometer/Gyroscope_GY_521.cpp)
 endif()
 
-set(executable_dep ${executable_dep} Prey.cpp Orientation_manager.cpp Gyroscope.cpp  Accelerometer.cpp Logger.cpp)
+set(executable_dep ${executable_dep} Prey.cpp Orientation_manager.cpp Gyroscope/Gyroscope.cpp  Accelerometer/Accelerometer.cpp Logger.cpp)
 
 add_executable(uav_prey main.cpp ${executable_dep})
 add_executable(accel_gyro_visualisation accel_gyro_visualisation.cpp ${executable_dep})
