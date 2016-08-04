@@ -7,11 +7,12 @@
 
 #include <Logger.h>
 #include <config.h>
+#include <utils.h>
+
 
 #include <thread>
 #include <mutex>
 
-//#define SAVE_SENSORS_VALUES
 
 using namespace std;
 
@@ -20,7 +21,7 @@ protected:
 
     Logger &logger;
 
-    /*If the values retrieved from the sensors have to be save for later simulations */
+    /* If the values retrieved from the sensors have to be save for later simulations */
 #ifdef SAVE_SENSORS_VALUES
     FILE *save_file = NULL;
 #endif

@@ -37,6 +37,11 @@ int Gyroscope::teardown(){
     run = false;
     gyroscope_task.join();
     logger.log(LOG_INFO, "Gyroscope thread terminated");
+
+#ifdef SAVE_SENSORS_VALUES
+    logger.log(LOG_DEBUG, "Closing saving file");
+    fclose(save_file);
+#endif
 }
 
 int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_value, double *z_rotation_value){
@@ -54,6 +59,13 @@ void Gyroscope::_main_task(){
         x_rotation_value = _get_x_rotation();
         y_rotation_value = _get_y_rotation();
         z_rotation_value = _get_z_rotation();
+
+        /*If the values retrieved from the sensors have to be save for later simulations */
+#ifdef SAVE_SENSORS_VALUES
+        //Wrinting all the value retrieved from the file
+        fprintf(save_file, "%f %f %f\n", x_rotation_value, y_rotation_value, z_rotation_value);
+#endif
+
         gyroscope_lock.unlock();
         usleep(update_frequency_ms*1000);
     }

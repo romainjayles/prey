@@ -5,7 +5,9 @@
 #ifndef PREY_CONFIG_H
 #define PREY_CONFIG_H
 
-#define SAVE_ACCELEROMETER_FILENAME "Accelerometer_saving"
+//#define SAVE_SENSORS_VALUES
+
+#define SAVE_ACCELEROMETER_FILENAME "accelerometer_saving"
 #define SAVE_GYROSCOPE_FILENAME "gyroscope_saving"
 
 #define MAX_FILENAME_SIZE 512

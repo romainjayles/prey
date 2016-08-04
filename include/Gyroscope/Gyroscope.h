@@ -17,6 +17,11 @@ protected:
 
     Logger &logger;
 
+    /* If the values retrieved from the sensors have to be save for later simulations */
+#ifdef SAVE_SENSORS_VALUES
+    FILE *save_file = NULL;
+#endif
+
     /**
      * The last value acquired
      */
