@@ -6,9 +6,14 @@
 #define PREY_GYROSCOPE_H
 
 #include <Logger.h>
+#include <config.h>
+#include <utils.h>
+
 
 #include <thread>
 #include <mutex>
+
+
 
 using namespace std;
 

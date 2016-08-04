@@ -2,8 +2,11 @@
 #define PREY_GYROSCOPE_GY_521_MOCK_H
 
 #include <Gyroscope.h>
+#include <config.h>
 
 class Gyroscope_GY_521_mock:public Gyroscope{
+
+    FILE *save_datas;
 
     int _init_gyroscope_sensor();
 

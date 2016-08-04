@@ -27,9 +27,26 @@ int Gyroscope::init(int update_frequency_ms){
         logger.log(LOG_ERROR, "Error, impossible to init Gyroscope sensor");
         return -1;
     }
+
+    /*If the values retrieved from the sensors have to be save for later simulations */
+#ifdef SAVE_SENSORS_VALUES
+    logger.log(LOG_DEBUG, "Creating the file for Accelerometer values");
+    //Opening the file (
+    save_file = fopen(SAVE_GYROSCOPE_FILENAME, "w+");
+    //Registering the update frequency
+    if(save_file == NULL){
+        logger.log(LOG_ERROR, "Failing to open %s", SAVE_GYROSCOPE_FILENAME);
+        return -1;
+    }
+    //First line is the update frequency
+    fprintf(save_file, "%i\n", update_frequency_ms);
+#endif
+
     run = true;
     this->update_frequency_ms = update_frequency_ms;
     gyroscope_task = thread(&Gyroscope::_main_task, this);
+
+
 }
 
 int Gyroscope::teardown(){
