@@ -30,7 +30,11 @@ int Accelerometer_GY_521_mock::_init_accelerometer_sensor(){
 }
 
 int Accelerometer_GY_521_mock::_teardown_accelerometer_sensor(){
-    return 0;
+    int error_code = 0;
+    if(fclose(save_file))
+        error_code = -1;
+
+    return error_code;
 }
 
 double Accelerometer_GY_521_mock::_get_x_acceleration(){
