@@ -46,20 +46,20 @@ double Gyroscope_GY_521_mock::_get_x_rotation(){
 
 double Gyroscope_GY_521_mock::_get_y_rotation(){
     double value = 0.0;
-    load_from_file(&value, AXIS_X);
+    load_from_file(&value, AXIS_Y);
     return value;
 }
 
 double Gyroscope_GY_521_mock::_get_z_rotation(){
     double value = 0.0;
-    load_from_file(&value, AXIS_X);
+    load_from_file(&value, AXIS_Z);
     return value;
 }
 
 /**
  * Allow to load the values directly from a file
  * It can manage values refreshment when needed
- * this function can't be common between gyroscope and accelerometer values because of static values
+ * this function can't be common between gyroscope and gyroscope values because of static values
  */
 int Gyroscope_GY_521_mock::load_from_file(double *buffer, axis axis_desired){
     static bool x_new = true;
@@ -75,7 +75,7 @@ int Gyroscope_GY_521_mock::load_from_file(double *buffer, axis axis_desired){
     if( (axis_desired == AXIS_X && !x_new) || (axis_desired == AXIS_Y && !y_new) || (axis_desired == AXIS_Z && !z_new)){
         if(getline(&values, &len, save_file) == -1){
             free(values);
-            logger.log(LOG_ERROR, "File %s empty", SAVE_ACCELEROMETER_FILENAME);
+            logger.log(LOG_ERROR, "File %s empty", SAVE_GYROSCOPE_FILENAME);
             return -1;
         }
         // We then get extract decimal values separated by space from the string
@@ -95,6 +95,9 @@ int Gyroscope_GY_521_mock::load_from_file(double *buffer, axis axis_desired){
         x_value = values_array[0];
         y_value = values_array[1];
         z_value = values_array[2];
+        x_new = true;
+        y_new = true;
+        z_new = true;
     }
 
     // We return the value demanded and turn the associated new flag to false

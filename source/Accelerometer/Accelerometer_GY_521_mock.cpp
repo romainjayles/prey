@@ -94,6 +94,9 @@ int Accelerometer_GY_521_mock::load_from_file(double *buffer, axis axis_desired)
         x_value = values_array[0];
         y_value = values_array[1];
         z_value = values_array[2];
+        x_new = true;
+        y_new = true;
+        z_new = true;
     }
 
     // We return the value demanded and turn the associated new flag to false
@@ -107,8 +110,8 @@ int Accelerometer_GY_521_mock::load_from_file(double *buffer, axis axis_desired)
             y_new = false;
             break;
         case AXIS_Z:
-            z_new = false;
             *buffer = z_value;
+            z_new = false;
             break;
     }
     free(values);
