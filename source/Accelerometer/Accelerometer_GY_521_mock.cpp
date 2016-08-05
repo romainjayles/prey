@@ -21,7 +21,7 @@ int Accelerometer_GY_521_mock::_init_accelerometer_sensor(){
 
     // We test if the save file has been save with the same update frequency
     if(atoi(update_string) != update_frequency_ms){
-        logger.log(LOG_ERROR, "Error the file has been recorded at %sms,  expecting %ims", update_string, update_frequency_ms);
+        logger.log(LOG_ERROR, "Error the file has been recorded at %ims,  expecting %ims", atoi(update_string), update_frequency_ms);
         return -1;
     }
     logger.log(LOG_DEBUG, "Accelerometer successfully mocked");
