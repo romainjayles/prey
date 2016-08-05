@@ -50,6 +50,13 @@ int Gyroscope::init(int update_frequency_ms){
 }
 
 int Gyroscope::teardown(){
+    int error_code;
+    logger.log(LOG_INFO, "Teardown gyroscope");
+
+    error_code = _teardown_gyroscope_sensor();
+    if(error_code == -1)
+        logger.log(LOG_ERROR, "Teardown gyroscope failed");
+
     logger.log(LOG_INFO, "Terminate Gyroscope thread");
     run = false;
     gyroscope_task.join();
@@ -59,6 +66,8 @@ int Gyroscope::teardown(){
     logger.log(LOG_DEBUG, "Closing saving file");
     fclose(save_file);
 #endif
+
+    return error_code;
 }
 
 int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_value, double *z_rotation_value){

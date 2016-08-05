@@ -40,6 +40,8 @@ protected:
      */
     virtual int _init_accelerometer_sensor() = 0;
 
+    virtual int _teardown_accelerometer_sensor() = 0;
+
     virtual double _get_x_acceleration() = 0;
 
     virtual double _get_y_acceleration() = 0;

@@ -28,6 +28,8 @@ class Gyroscope_GY_521:public Gyroscope{
 
     int _init_gyroscope_sensor();
 
+    int _teardown_gyroscope_sensor();
+
     double _get_x_rotation();
 
     double _get_y_rotation();

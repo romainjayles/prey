@@ -29,6 +29,10 @@ int Accelerometer_GY_521_mock::_init_accelerometer_sensor(){
     return 0;
 }
 
+int Accelerometer_GY_521_mock::_teardown_accelerometer_sensor(){
+    return 0;
+}
+
 double Accelerometer_GY_521_mock::_get_x_acceleration(){
     double value = 0.0;
     load_from_file(&value, AXIS_X);

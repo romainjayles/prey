@@ -20,6 +20,10 @@ int Gyroscope_GY_521::_init_gyroscope_sensor(){
     return 0;
 }
 
+int Gyroscope_GY_521::_teardown_gyroscope_sensor(){
+    return 0;
+}
+
 double Gyroscope_GY_521::_get_x_rotation(){
     return read_high_low_register(REG_GYRO_X_HIGH, REG_GYRO_X_LOW)/sensitivity;
 }

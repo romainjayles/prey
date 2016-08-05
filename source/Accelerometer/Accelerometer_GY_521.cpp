@@ -18,6 +18,10 @@ int Accelerometer_GY_521::_init_accelerometer_sensor(){
     return 0;
 }
 
+int Accelerometer_GY_521::_teardown_accelerometer_sensor(){
+    return 0;
+}
+
 double Accelerometer_GY_521::_get_x_acceleration(){
     return read_high_low_register(REG_ACCEL_X_HIGH, REG_ACCEL_X_LOW)/sensitivity;
 }

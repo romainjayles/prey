@@ -48,6 +48,13 @@ int Accelerometer::init(int update_frequency_ms) {
 }
 
 int Accelerometer::teardown() {
+    int error_code;
+    logger.log(LOG_INFO, "Teardown accelerometer");
+
+    error_code = _teardown_accelerometer_sensor();
+    if(error_code == -1)
+        logger.log(LOG_ERROR, "Teardown accelerometer failed");
+
     logger.log(LOG_INFO, "Terminate Accelerometer thread");
     run = false;
     accelerometer_task.join();
@@ -57,6 +64,7 @@ int Accelerometer::teardown() {
     logger.log(LOG_DEBUG, "Closing saving file");
     fclose(save_file);
 #endif
+    return error_code;
 }
 
 int Accelerometer::get_current_values(double *x_acceleration_value, double *y_acceleration_value, double *z_acceleration_value) {

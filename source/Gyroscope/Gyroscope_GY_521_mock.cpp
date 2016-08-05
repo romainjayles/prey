@@ -4,6 +4,10 @@ int Gyroscope_GY_521_mock::_init_gyroscope_sensor(){
     return 0;
 }
 
+int Gyroscope_GY_521_mock::_teardown_gyroscope_sensor(){
+    return 0;
+}
+
 double Gyroscope_GY_521_mock::_get_x_rotation(){
     return 1.0;
 }

@@ -15,6 +15,8 @@ class Accelerometer_GY_521_mock:public Accelerometer{
 
     int _init_accelerometer_sensor();
 
+    int _teardown_accelerometer_sensor();
+
     double _get_x_acceleration();
 
     double _get_y_acceleration();

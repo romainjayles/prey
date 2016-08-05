@@ -42,6 +42,8 @@ protected:
      */
     virtual int _init_gyroscope_sensor() = 0;
 
+    virtual int _teardown_gyroscope_sensor() = 0;
+
     virtual double _get_x_rotation() = 0;
 
     virtual double _get_y_rotation() = 0;
