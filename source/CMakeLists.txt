@@ -7,7 +7,7 @@ else(NOT MOCK)
     find_package(WiringPi REQUIRED)
 
     include_directories(${WIRINGPI_INCLUDE_DIRS})
-    set(executable_dep ${executable_dep} Accelerometer/Accelerometer_GY_521.cpp Accelerometer/Gyroscope_GY_521.cpp)
+    set(executable_dep ${executable_dep} Accelerometer/Accelerometer_GY_521.cpp Gyroscope/Gyroscope_GY_521.cpp)
 endif()
 
 set(executable_dep ${executable_dep} Prey.cpp Orientation_manager.cpp Gyroscope/Gyroscope.cpp  Accelerometer/Accelerometer.cpp Logger.cpp)
