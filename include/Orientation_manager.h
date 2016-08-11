@@ -44,7 +44,7 @@ private:
     Gyroscope_GY_521 gyroscope;
     Accelerometer_GY_521 accelerometer;
     #endif
-
+    static mutex orientation_manager_lock;
     thread orientation_manager_task;
     bool run;
 

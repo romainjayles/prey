@@ -21,7 +21,7 @@ int Gyroscope_GY_521_mock::_init_gyroscope_sensor(){
 
     // We test if the save file has been save with the same update frequency
     if(atoi(update_string) != update_frequency_ms){
-        logger.log(LOG_ERROR, "Error the file has been recorded at %ims,  expecting %ims", atoi(update_string), update_frequency_ms);
+        logger.log(LOG_ERROR, "\"Error the file has been recorded at %ims, %ims is not a correct update value\"", atoi(update_string), update_frequency_ms);
         return -1;
     }
     logger.log(LOG_DEBUG, "Gyroscope successfully mocked");
