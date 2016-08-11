@@ -27,8 +27,8 @@ private:
     /**
      * The latest values of the orientation of the UAV
      */
-    double tilt;
     double pitch;
+    double roll;
     double yaw;
 
     /**
@@ -60,7 +60,7 @@ public:
     /**
      * Get the buffer computed by the thread
      */
-    int get_orientation(double *tilt, double *pitch, double *yaw);
+    int get_orientation(double *pitch, double *roll, double *yaw);
 
     /**
      * Properly stop the class and the thread
