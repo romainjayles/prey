@@ -24,6 +24,7 @@ class Orientation_manager
 private:
 
     Logger &logger;
+
     /**
      * The latest values of the orientation of the UAV
      */

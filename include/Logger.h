@@ -24,7 +24,6 @@ typedef enum {
 
 /**
  * Class used to centralized logging message
- * Implemented as a singleton
  */
 class Logger{
 
