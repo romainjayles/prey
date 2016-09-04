@@ -15,6 +15,7 @@ using namespace std;
 
 
 typedef enum {
+    LOG_TEST = -1,
     LOG_ERROR = 0,
     LOG_INFO = 1,
     LOG_DEBUG = 2,
