@@ -22,7 +22,7 @@ void handler(int v) {
 int main(int argv, char **argc){
     int update;
     signal(SIGINT, handler);
-    Logger logger(LOG_INFO);
+    Logger logger(LOG_ERROR);
 
     double tilt, pitch, yaw;
 
@@ -38,7 +38,7 @@ int main(int argv, char **argc){
         run = true;
         while(run){
             orientation_manager.get_orientation(&tilt, &pitch, &yaw);
-            printf("%f %f %f\n", tilt, pitch, yaw);
+            logger.log(LOG_INFO, "%f %f %f\n", tilt, pitch, yaw);
             usleep(update*1000);
         }
         orientation_manager.teardown();
