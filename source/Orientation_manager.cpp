@@ -55,7 +55,7 @@ int Orientation_manager::teardown(){
 
 
 void Orientation_manager::_main_task(){
-    double pitch, roll, pitch_accel, roll_accel, pitch_gyro, roll_gyro;
+    double pitch_accel, roll_accel, pitch_gyro, roll_gyro;
     double accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
     double ratio = 0.1;
 
@@ -73,6 +73,10 @@ void Orientation_manager::_main_task(){
 
         this->pitch = (1-ratio)*pitch_gyro + ratio*pitch_accel;
         this->roll = (1-ratio)*roll_gyro + ratio*roll_accel;
+        /*this->pitch = pitch_gyro;
+        this->roll = roll_accel;*/
+
+        logger.log(LOG_TEST, "TEST_ORIENTATION::%f %f %f", pitch_accel, pitch_gyro, pitch);
         //yaw++;
         orientation_manager_lock.unlock();
         usleep(update_frequency_ms*1000);
