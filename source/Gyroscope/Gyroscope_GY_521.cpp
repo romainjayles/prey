@@ -33,7 +33,7 @@ double Gyroscope_GY_521::_get_y_rotation(){
 }
 
 double Gyroscope_GY_521::_get_z_rotation(){
-    return read_high_low_register(REG_GYRO_Y_HIGH, REG_GYRO_Y_LOW)/sensitivity;
+    return read_high_low_register(REG_GYRO_Z_HIGH, REG_GYRO_Z_LOW)/sensitivity;
 }
 
 int16_t Gyroscope_GY_521::read_high_low_register(int8_t register_high, int8_t register_low){
