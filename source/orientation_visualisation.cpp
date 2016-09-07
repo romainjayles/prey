@@ -24,7 +24,7 @@ int main(int argv, char **argc){
     signal(SIGINT, handler);
     Logger logger(LOG_ERROR);
 
-    double tilt, pitch, yaw;
+    double roll, pitch, yaw;
 
     Orientation_manager orientation_manager(logger);
     if(argv != 2){
@@ -37,8 +37,8 @@ int main(int argv, char **argc){
 
         run = true;
         while(run){
-            orientation_manager.get_orientation(&tilt, &pitch, &yaw);
-            logger.log(LOG_INFO, "%f %f %f\n", tilt, pitch, yaw);
+            orientation_manager.get_orientation(&roll, &pitch, &yaw);
+            logger.log(LOG_INFO, "%f %f %f\n", roll, pitch, yaw);
             usleep(update*1000);
         }
         orientation_manager.teardown();
