@@ -92,11 +92,11 @@ def main():
             #        rotate_x = -1
             #    if event.key == pygame.K_DOWN:
             #        rotate_x = 1
-        glRotatef(-actual_pitch, 0, 1, 0)
+        glRotatef(-actual_pitch, 0, 0, 1)
         glRotatef(-actual_roll, 1, 0, 0)
         update_values()
         glRotatef(actual_roll, 1, 0, 0)
-        glRotatef(actual_pitch, 0, 1, 0)
+        glRotatef(actual_pitch, 0, 0, 1)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         Shape()
         pygame.display.flip()
