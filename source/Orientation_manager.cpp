@@ -55,9 +55,10 @@ int Orientation_manager::teardown(){
 
 
 void Orientation_manager::_main_task(){
-    double pitch_accel, roll_accel, pitch_gyro, roll_gyro;
+    double pitch_accel, roll_accel, pitch_gyro, roll_gyro, current_pitch, current_roll;
     double accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
     double ratio = 0.1;
+
 
     while(run){
         accelerometer.get_current_values(&accel_x, &accel_y, &accel_z);
@@ -68,16 +69,14 @@ void Orientation_manager::_main_task(){
         pitch_gyro = this->pitch + gyro_y*update_frequency_ms/1000.0;
         roll_gyro = this->roll + gyro_x*update_frequency_ms/1000.0;
 
-        pitch_accel = atan2(accel_y, accel_z) * 180/M_PI;
-        roll_accel = atan2(-accel_x, sqrt(max(accel_x*accel_y + accel_z*accel_z,0.0))) * 180/M_PI;
+        roll_accel = atan2(accel_y, accel_z) * 180/M_PI, 360;
+        pitch_accel = atan2(-accel_x, sqrt(accel_y*accel_y + accel_z*accel_z)) * 180/M_PI;
 
         this->pitch = (1-ratio)*pitch_gyro + ratio*pitch_accel;
         this->roll = (1-ratio)*roll_gyro + ratio*roll_accel;
-        /*this->pitch = pitch_gyro;
-        this->roll = roll_accel;*/
 
-        logger.log(LOG_TEST, "TEST_ORIENTATION::%f %f %f", pitch_accel, pitch_gyro, pitch);
-        //yaw++;
+        logger.log(LOG_TEST, "TEST_ORIENTATION::%f %f %f", roll, pitch, yaw);
+        
         orientation_manager_lock.unlock();
         usleep(update_frequency_ms*1000);
     }
