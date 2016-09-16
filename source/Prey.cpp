@@ -4,21 +4,22 @@
 
 #include <Prey.h>
 #include <Orientation_manager.h>
+#include <Flight_controller.h>
 #include <config.h>
 
 #include <stdio.h>
 
-Prey::Prey(Logger &logger): logger(logger), orientation_manager(logger){
+Prey::Prey(Logger &logger): logger(logger), flight_controller(logger){
     current_state = SLEEPING;
 }
 
 int Prey::init(){
-    logger.log(LOG_INFO, "Launching orientation manager");
-    orientation_manager.init(ORIENTATION_MANAGER_UPDATE_FREQUENCY_MS);
+    logger.log(LOG_INFO, "Launching Flight Controller");
+    flight_controller.init(FLIGHT_CONTROLLER_UPDATE_FREQUENCY_MS);
 }
 
 int Prey::teardown(){
     logger.log(LOG_INFO, "Terminate Prey");
-    orientation_manager.teardown();
+    flight_controller.teardown();
     logger.log(LOG_INFO, "Prey terminated\n");
 }

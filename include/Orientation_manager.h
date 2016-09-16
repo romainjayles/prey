@@ -6,7 +6,6 @@
 #ifndef PREY_ORIENTATION_MANAGER_H
 #define PREY_ORIENTATION_MANAGER_H
 
-#include <Orientation_manager.h>
 #include <Logger.h>
 #include <thread>
 #ifdef MOCK

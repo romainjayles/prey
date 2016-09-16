@@ -76,7 +76,7 @@ void Orientation_manager::_main_task(){
         this->roll = (1-ratio)*roll_gyro + ratio*roll_accel;
 
         logger.log(LOG_TEST, "TEST_ORIENTATION::%f %f %f", roll, pitch, yaw);
-        
+
         orientation_manager_lock.unlock();
         usleep(update_frequency_ms*1000);
     }

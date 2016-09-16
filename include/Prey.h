@@ -6,6 +6,7 @@
 #define PREY_PREY_H
 
 #include <Orientation_manager.h>
+#include <Flight_controller.h>
 #include <Logger.h>
 
 /**
@@ -27,7 +28,7 @@ private:
     //The actual state of the uav
     State current_state;
 
-    Orientation_manager orientation_manager;
+    Flight_controller flight_controller;
 
     Logger &logger;
 
