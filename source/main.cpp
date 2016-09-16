@@ -19,7 +19,6 @@ int main(int argv, char **argc){
     Prey prey(logger);
     //Initialization of the uav
     prey.init();
-    logger.log(LOG_INFO, ".. end");
     //Stopping the uav
     prey.teardown();
 }

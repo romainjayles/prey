@@ -45,12 +45,12 @@ int Orientation_manager::get_orientation(double *pitch, double *roll, double *ya
 }
 
 int Orientation_manager::teardown(){
-    logger.log(LOG_INFO, "Terminate orientation_manager thread");
+    logger.log(LOG_INFO, "Terminate Orientation_manager thread");
     accelerometer.teardown();
     gyroscope.teardown();
     run = false;
     orientation_manager_task.join();
-    logger.log(LOG_INFO, "orientation_manager thread terminated");
+    logger.log(LOG_INFO, "Orientation_manager thread terminated");
 }
 
 
