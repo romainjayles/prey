@@ -81,12 +81,16 @@ int Flight_controller::command_yaw(float desired_yaw, int precision){
     flight_controller_lock.unlock();
 }
 
-
+/**
+ * This is the main task of the Flight Controller
+ * It will receives the informations on the orientation and the desired orientation
+ * It will command the motors in order to fit the command
+ */
 void Flight_controller::_main_task(){
 
     while(run){
-        logger.log(LOG_ERROR, "Do nothing");
         flight_controller_lock.lock();
+        logger.log(LOG_ERROR, "Not implemented yet");
         flight_controller_lock.unlock();
         usleep(update_frequency_ms*1000);
     }
