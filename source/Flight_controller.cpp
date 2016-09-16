@@ -1,11 +1,12 @@
 #include <Flight_controller.h>
+#include <Motor_manager.h>
 #include <Logger.h>
 #include <unistd.h>
 
 //Initialization of the static variable
 mutex Flight_controller::flight_controller_lock;
 
-Flight_controller::Flight_controller(Logger &logger):logger(logger), orientation_manager(logger){
+Flight_controller::Flight_controller(Logger &logger):logger(logger), orientation_manager(logger), motor_manager(logger){
     desired_pitch = 0.0;
     desired_yaw = 0.0;
     desired_roll = 0.0;
@@ -24,6 +25,7 @@ int Flight_controller::init(int update_frequency_ms){
     // Launching the task necessary for flight_controller
     logger.log(LOG_INFO, "Launching orientation manager");
     orientation_manager.init(ORIENTATION_MANAGER_UPDATE_FREQUENCY_MS);
+    motor_manager.init();
 
     // Launching the flight controllerN
     run = true;
@@ -36,6 +38,7 @@ int Flight_controller::init(int update_frequency_ms){
  */
 int Flight_controller::teardown(){
     orientation_manager.teardown();
+    motor_manager.teardown();
 
     run = false;
     flight_controller_task.join();

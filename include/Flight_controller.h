@@ -9,6 +9,7 @@
 
 #include <Logger.h>
 #include <Orientation_manager.h>
+#include <Motor_manager.h>
 #include <thread>
 
 class Flight_controller{
@@ -25,6 +26,7 @@ private:
 
     Logger &logger;
     Orientation_manager orientation_manager;
+    Motor_manager motor_manager;
 
     /**
      * The update frequency of the main thread

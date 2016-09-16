@@ -33,6 +33,8 @@ public:
 
     int init();
 
+    int teardown();
+
     /**
      * Allow to control motors on a quadcopter
      * Speeds have to be set in percentage (0.0 : no speed - 100.0 full speed)

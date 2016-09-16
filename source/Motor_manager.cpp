@@ -15,6 +15,12 @@ int Motor_manager::init(){
     //TODO : the real init
 }
 
+int Motor_manager::teardown(){
+    logger.log(LOG_INFO, "MOTOR MANAGER TEARDOWN");
+    return 0;
+    //TODO : the real teardown
+}
+
 int Motor_manager::set_motor_speed(float motor_s, float motor_n, float motor_e, float motor_w){
     logger.log(LOG_INFO, "MOTOR MANAGER SPEED SET AT : %f, %f, %f, %f", motor_s, motor_n, motor_e, motor_w);
     this->motor_s = motor_s;
