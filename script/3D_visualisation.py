@@ -59,6 +59,7 @@ actual_pitch = 0
 actual_yaw = 0
 
 print "Launching the 3D representation of the position of the device"
+print " * For now the script has to be launch from the /script directory"
 print " * Update frequency set at " + str(frequency) + "ms"
 print " * Warning experiment show that python is too slow for processing at frequencies bellow 30ms"
 proc = subprocess.Popen(COMMAND_LINE + [str(frequency)], stdout=subprocess.PIPE)
