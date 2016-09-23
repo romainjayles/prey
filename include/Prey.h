@@ -2,11 +2,13 @@
 // Created by jaylesr on 20/06/16.
 //
 
-#ifndef PREY_PREY_H
-#define PREY_PREY_H
+#ifndef _PREY_H_
+#define _PREY_H_
 
 #include <Orientation_manager.h>
 #include <Flight_controller.h>
+#include <GPS.h>
+#include <GPS_mock.h>
 #include <Logger.h>
 
 /**
@@ -29,6 +31,7 @@ private:
     State current_state;
 
     Flight_controller flight_controller;
+    GPS_mock gps;
 
     Logger &logger;
 
@@ -49,4 +52,4 @@ public:
     int land();
 };
 
-#endif //PREY_PREY_H
+#endif //_PREY_H_
