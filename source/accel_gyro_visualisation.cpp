@@ -40,7 +40,7 @@ int main(int argv, char **argc){
     #endif
 
 
-    double accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
+    float accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
     if(argv != 2){
         printf("Error, the update frequency of measurement should be specified in argument\n");
     }else{

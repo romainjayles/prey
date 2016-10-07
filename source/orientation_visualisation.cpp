@@ -24,7 +24,7 @@ int main(int argv, char **argc){
     signal(SIGINT, handler);
     Logger logger(LOG_ERROR);
 
-    double roll, pitch, yaw;
+    float roll, pitch, yaw;
 
     Orientation_manager orientation_manager(logger);
     if(argv != 2){
