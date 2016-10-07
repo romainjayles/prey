@@ -20,6 +20,10 @@ private:
     float desired_pitch;
     float desired_yaw;
 
+    float previous_roll_error;
+    float previous_pitch_error;
+    float previous_yaw_error;
+
     int roll_precision;
     int pitch_precision;
     int yaw_precision;

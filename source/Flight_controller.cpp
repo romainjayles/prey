@@ -14,6 +14,12 @@ Flight_controller::Flight_controller(Logger &logger):logger(logger), orientation
     roll_precision = 0;
     pitch_precision = 0;
     yaw_precision = 0;
+
+    //TODO be sure that this initialisation is legit
+    previous_roll_error = 0.0;
+    previous_pitch_error = 0.0;
+    previous_yaw_error = 0.0;
+
 }
 
 /**
@@ -90,11 +96,21 @@ int Flight_controller::command_yaw(float desired_yaw, int precision){
  * It will command the motors in order to fit the command
  */
 void Flight_controller::_main_task(){
-
+    float roll_error, pitch_error, yaw_error;
     while(run){
         flight_controller_lock.lock();
+        //TODO : add integral error
+        //TODO : check if the update_frequency_ms is actually respected between 2 calls
         logger.log(LOG_ERROR, "Not implemented yet");
+
+        //TODO find the right scale to adapt the output from the PID to [0-100]
         flight_controller_lock.unlock();
+
+        // We save the current error for re-use
+        previous_roll_error = roll_error;
+        previous_pitch_error = pitch_error;
+        previous_yaw_error = yaw_error;
+
         usleep(update_frequency_ms*1000);
     }
 
