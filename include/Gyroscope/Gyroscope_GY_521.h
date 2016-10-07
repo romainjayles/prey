@@ -24,17 +24,17 @@
 class Gyroscope_GY_521:public Gyroscope{
 
     int fd;
-    double sensitivity;
+    float sensitivity;
 
     int _init_gyroscope_sensor();
 
     int _teardown_gyroscope_sensor();
 
-    double _get_x_rotation();
+    float _get_x_rotation();
 
-    double _get_y_rotation();
+    float _get_y_rotation();
 
-    double _get_z_rotation();
+    float _get_z_rotation();
 
     int16_t read_high_low_register(int8_t register_high, int8_t register_low);
 

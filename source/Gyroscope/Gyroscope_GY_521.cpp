@@ -24,15 +24,15 @@ int Gyroscope_GY_521::_teardown_gyroscope_sensor(){
     return 0;
 }
 
-double Gyroscope_GY_521::_get_x_rotation(){
+float Gyroscope_GY_521::_get_x_rotation(){
     return read_high_low_register(REG_GYRO_X_HIGH, REG_GYRO_X_LOW)/sensitivity;
 }
 
-double Gyroscope_GY_521::_get_y_rotation(){
+float Gyroscope_GY_521::_get_y_rotation(){
     return read_high_low_register(REG_GYRO_Y_HIGH, REG_GYRO_Y_LOW)/sensitivity;
 }
 
-double Gyroscope_GY_521::_get_z_rotation(){
+float Gyroscope_GY_521::_get_z_rotation(){
     return read_high_low_register(REG_GYRO_Z_HIGH, REG_GYRO_Z_LOW)/sensitivity;
 }
 

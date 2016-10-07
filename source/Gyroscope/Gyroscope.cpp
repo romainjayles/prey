@@ -70,7 +70,7 @@ int Gyroscope::teardown(){
     return error_code;
 }
 
-int Gyroscope::get_current_values(double *x_rotation_value, double *y_rotation_value, double *z_rotation_value){
+int Gyroscope::get_current_values(float *x_rotation_value, float *y_rotation_value, float *z_rotation_value){
     //mutex gyroscope_lock;
     gyroscope_lock.lock();
     *x_rotation_value = this->x_rotation_value;

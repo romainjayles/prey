@@ -30,9 +30,9 @@ protected:
     /**
      * The last value acquired
      */
-    double x_rotation_value;
-    double y_rotation_value;
-    double z_rotation_value;
+    float x_rotation_value;
+    float y_rotation_value;
+    float z_rotation_value;
 
 
     int update_frequency_ms; //The refresh time of gyroscope values
@@ -44,11 +44,11 @@ protected:
 
     virtual int _teardown_gyroscope_sensor() = 0;
 
-    virtual double _get_x_rotation() = 0;
+    virtual float _get_x_rotation() = 0;
 
-    virtual double _get_y_rotation() = 0;
+    virtual float _get_y_rotation() = 0;
 
-    virtual double _get_z_rotation() = 0;
+    virtual float _get_z_rotation() = 0;
 
     thread gyroscope_task;
     bool run;
@@ -69,7 +69,7 @@ public:
 
     int teardown();
 
-    int get_current_values(double *x_rotation_value, double *y_rotation_value, double *z_rotation_value);
+    int get_current_values(float *x_rotation_value, float *y_rotation_value, float *z_rotation_value);
 
     void _main_task();
 

@@ -36,7 +36,7 @@ int Orientation_manager::init(int update_frequency_ms){
     orientation_manager_task = thread(&Orientation_manager::_main_task, this);
 }
 
-int Orientation_manager::get_orientation(double *pitch, double *roll, double *yaw){
+int Orientation_manager::get_orientation(float *pitch, float *roll, float *yaw){
     orientation_manager_lock.lock();
     *pitch = this->pitch;
     *roll = this->roll;
@@ -55,9 +55,9 @@ int Orientation_manager::teardown(){
 
 
 void Orientation_manager::_main_task(){
-    double pitch_accel, roll_accel, pitch_gyro, roll_gyro, current_pitch, current_roll;
-    double accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
-    double ratio = 0.1;
+    float pitch_accel, roll_accel, pitch_gyro, roll_gyro, current_pitch, current_roll;
+    float accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
+    float ratio = 0.1;
 
 
     while(run){

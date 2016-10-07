@@ -17,18 +17,18 @@ class Accelerometer_GY_521_mock:public Accelerometer{
 
     int _teardown_accelerometer_sensor();
 
-    double _get_x_acceleration();
+    float _get_x_acceleration();
 
-    double _get_y_acceleration();
+    float _get_y_acceleration();
 
-    double _get_z_acceleration();
+    float _get_z_acceleration();
 
     /**
      * Allow to load the values directly from a file
      * It can manage values refreshment when needed
      * this function can't be common between gyroscope and accelerometer values because of static values
      */
-    int load_from_file(double *buffer, axis axis_desired);
+    int load_from_file(float *buffer, axis axis_desired);
 
 public:
     using Accelerometer::Accelerometer;

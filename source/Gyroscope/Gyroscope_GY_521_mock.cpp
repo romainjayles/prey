@@ -38,20 +38,20 @@ int Gyroscope_GY_521_mock::_teardown_gyroscope_sensor(){
 }
 
 
-double Gyroscope_GY_521_mock::_get_x_rotation(){
-    double value = 0.0;
+float Gyroscope_GY_521_mock::_get_x_rotation(){
+    float value = 0.0;
     load_from_file(&value, AXIS_X);
     return value;
 }
 
-double Gyroscope_GY_521_mock::_get_y_rotation(){
-    double value = 0.0;
+float Gyroscope_GY_521_mock::_get_y_rotation(){
+    float value = 0.0;
     load_from_file(&value, AXIS_Y);
     return value;
 }
 
-double Gyroscope_GY_521_mock::_get_z_rotation(){
-    double value = 0.0;
+float Gyroscope_GY_521_mock::_get_z_rotation(){
+    float value = 0.0;
     load_from_file(&value, AXIS_Z);
     return value;
 }
@@ -61,14 +61,14 @@ double Gyroscope_GY_521_mock::_get_z_rotation(){
  * It can manage values refreshment when needed
  * this function can't be common between gyroscope and gyroscope values because of static values
  */
-int Gyroscope_GY_521_mock::load_from_file(double *buffer, axis axis_desired){
+int Gyroscope_GY_521_mock::load_from_file(float *buffer, axis axis_desired){
     static bool x_new = true;
     static bool y_new = true;
     static bool z_new = true;
-    static double x_value = 0.0;
-    static double y_value = 0.0;
-    static double z_value = 0.0;
-    double values_array[3];
+    static float x_value = 0.0;
+    static float y_value = 0.0;
+    static float z_value = 0.0;
+    float values_array[3];
     char *values = NULL;
     size_t len;
     // If the value has already been fetched, we must triger a new line reading

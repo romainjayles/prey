@@ -28,9 +28,9 @@ protected:
     /**
      * The last value acquired
      */
-    double x_acceleration_value;
-    double y_acceleration_value;
-    double z_acceleration_value;
+    float x_acceleration_value;
+    float y_acceleration_value;
+    float z_acceleration_value;
 
 
     int update_frequency_ms; //The refresh time of accelerometer values
@@ -42,11 +42,11 @@ protected:
 
     virtual int _teardown_accelerometer_sensor() = 0;
 
-    virtual double _get_x_acceleration() = 0;
+    virtual float _get_x_acceleration() = 0;
 
-    virtual double _get_y_acceleration() = 0;
+    virtual float _get_y_acceleration() = 0;
 
-    virtual double _get_z_acceleration() = 0;
+    virtual float _get_z_acceleration() = 0;
 
     thread accelerometer_task;
     bool run;
@@ -67,7 +67,7 @@ public:
 
     int teardown();
 
-    int get_current_values(double *x_acceleration_value, double *y_acceleration_value, double *z_acceleration_value);
+    int get_current_values(float *x_acceleration_value, float *y_acceleration_value, float *z_acceleration_value);
 
     void _main_task();
 

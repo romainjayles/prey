@@ -27,9 +27,9 @@ private:
     /**
      * The latest values of the orientation of the UAV
      */
-    double pitch;
-    double roll;
-    double yaw;
+    float pitch;
+    float roll;
+    float yaw;
 
     /**
      * The update frequency of the tilt, pitch, yaw
@@ -60,7 +60,7 @@ public:
     /**
      * Get the buffer computed by the thread
      */
-    int get_orientation(double *pitch, double *roll, double *yaw);
+    int get_orientation(float *pitch, float *roll, float *yaw);
 
     /**
      * Properly stop the class and the thread

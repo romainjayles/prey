@@ -67,7 +67,7 @@ int Accelerometer::teardown() {
     return error_code;
 }
 
-int Accelerometer::get_current_values(double *x_acceleration_value, double *y_acceleration_value, double *z_acceleration_value) {
+int Accelerometer::get_current_values(float *x_acceleration_value, float *y_acceleration_value, float *z_acceleration_value) {
     //mutex accelerometer_lock;
     accelerometer_lock.lock();
     *x_acceleration_value = this->x_acceleration_value;

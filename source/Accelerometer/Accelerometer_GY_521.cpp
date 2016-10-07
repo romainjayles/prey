@@ -22,15 +22,15 @@ int Accelerometer_GY_521::_teardown_accelerometer_sensor(){
     return 0;
 }
 
-double Accelerometer_GY_521::_get_x_acceleration(){
+float Accelerometer_GY_521::_get_x_acceleration(){
     return read_high_low_register(REG_ACCEL_X_HIGH, REG_ACCEL_X_LOW)/sensitivity;
 }
 
-double Accelerometer_GY_521::_get_y_acceleration(){
+float Accelerometer_GY_521::_get_y_acceleration(){
     return read_high_low_register(REG_ACCEL_Y_HIGH, REG_ACCEL_Y_LOW)/sensitivity;
 }
 
-double Accelerometer_GY_521::_get_z_acceleration(){
+float Accelerometer_GY_521::_get_z_acceleration(){
     return read_high_low_register(REG_ACCEL_Z_HIGH, REG_ACCEL_Z_LOW)/sensitivity;
 }
 

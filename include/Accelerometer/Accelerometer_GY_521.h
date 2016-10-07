@@ -24,18 +24,18 @@
 class Accelerometer_GY_521:public Accelerometer{
 
     //TODO : change
-    double sensitivity = ACCEL_SENSITIVITY_2;
+    float sensitivity = ACCEL_SENSITIVITY_2;
     int fd;
 
     int _init_accelerometer_sensor();
 
     int _teardown_accelerometer_sensor();
 
-    double _get_x_acceleration();
+    float _get_x_acceleration();
 
-    double _get_y_acceleration();
+    float _get_y_acceleration();
 
-    double _get_z_acceleration();
+    float _get_z_acceleration();
 
     int16_t read_high_low_register(int8_t register_high, int8_t register_low);
 
