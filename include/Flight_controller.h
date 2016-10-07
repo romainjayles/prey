@@ -20,6 +20,7 @@ private:
     float desired_pitch;
     float desired_yaw;
 
+    //TODO : do not need to be a class attribute ?
     float previous_roll_error;
     float previous_pitch_error;
     float previous_yaw_error;

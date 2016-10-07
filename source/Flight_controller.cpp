@@ -96,20 +96,57 @@ int Flight_controller::command_yaw(float desired_yaw, int precision){
  * It will command the motors in order to fit the command
  */
 void Flight_controller::_main_task(){
-    float roll_error, pitch_error, yaw_error;
+    float roll_error = 0.0, pitch_error = 0.0, yaw_error = 0.0;
+    float current_roll, current_pitch, current_yaw;
+    float roll_output, pitch_output, yaw_output;
+    float derivative_roll_error = 0.0, derivative_pitch_error = 0.0, derivative_yaw_error = 0.0;
+    float integrated_roll_error = 0.0, integrated_pitch_error = 0.0, integrated_yaw_error = 0.0;
+
+    //TODO : check if dt is really update_frequency_ms between two thread wake up
+    // local access should be quicker than accessing class attribute
+    int dt = update_frequency_ms;
+
     while(run){
         flight_controller_lock.lock();
+
+        //We get the new values from the orientation_manager
+        if(orientation_manager.get_orientation(&current_pitch, &current_roll, &current_yaw) == -1){
+            logger.log(LOG_ERROR, "Error while trying to orientation values in flight controller");
+        }
+
         //TODO : add integral error
         //TODO : check if the update_frequency_ms is actually respected between 2 calls
-        logger.log(LOG_ERROR, "Not implemented yet");
+        roll_error = desired_roll - current_roll;
+        pitch_error = desired_pitch - current_pitch;
+        yaw_error = desired_yaw - current_yaw;
+
+        derivative_roll_error = roll_error - previous_roll_error;
+        derivative_pitch_error = pitch_error - previous_pitch_error;
+        derivative_yaw_error = yaw_error - previous_yaw_error;
+
+        //TODO : shouldn't we mutliply by the dt ?
+        integrated_roll_error = integrated_roll_error + roll_error;
+        integrated_pitch_error = integrated_pitch_error + pitch_error;
+        integrated_yaw_error = integrated_yaw_error + yaw_error;
+
+
+
+        //TODO : check unity
+
+        roll_output = (KP_ROLL*roll_error) + (KD_ROLL*integrated_roll_error*dt) + (KI_ROLL*derivative_roll_error/dt);
+        pitch_output = (KP_PITCH*pitch_error) + (KD_PITCH*integrated_pitch_error*dt) + (KI_PITCH*derivative_pitch_error/dt);
+        yaw_output = (KP_YAW*yaw_error) + (KD_YAW*integrated_yaw_error*dt) + (KI_YAW*derivative_yaw_error/dt);
 
         //TODO find the right scale to adapt the output from the PID to [0-100]
         flight_controller_lock.unlock();
+        logger.log(LOG_DEBUG, "PID output : %f %f %f", roll_output, pitch_output, yaw_output);
 
         // We save the current error for re-use
         previous_roll_error = roll_error;
         previous_pitch_error = pitch_error;
         previous_yaw_error = yaw_error;
+
+
 
         usleep(update_frequency_ms*1000);
     }
