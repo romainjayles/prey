@@ -20,10 +20,10 @@ private:
     /**
      * Values of the 4 motors of the quadcopter in percentage
      */
-    float motor_s;
-    float motor_n;
-    float motor_e;
-    float motor_w;
+    float motor_x_m;
+    float motor_x_p;
+    float motor_y_m;
+    float motor_y_p;
 
 
 
@@ -39,12 +39,12 @@ public:
      * Allow to control motors on a quadcopter
      * Speeds have to be set in percentage (0.0 : no speed - 100.0 full speed)
      */
-    int set_motor_speed(float motor_s, float motor_n, float motor_e, float motor_w);
+    int set_motor_speed(float motor_x_m, float motor_x_p, float motor_y_m, float motor_y_p);
 
     /**
      * Allow to retrieve the speed previously set to the motors
      */
-    void get_motor_speed(float &motor_s, float &motor_n, float &motor_e, float &motor_w);
+    void get_motor_speed(float &motor_x_m, float &motor_x_p, float &motor_y_m, float &motor_y_p);
 
 };
 

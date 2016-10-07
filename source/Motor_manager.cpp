@@ -3,10 +3,10 @@
 
 
 Motor_manager::Motor_manager(Logger &logger): logger(logger){
-    float motor_s = 0.0;
-    float motor_n = 0.0;
-    float motor_e = 0.0;
-    float motor_w = 0.0;
+    float motor_x_m = 0.0;
+    float motor_x_p = 0.0;
+    float motor_y_m = 0.0;
+    float motor_y_p = 0.0;
 }
 
 int Motor_manager::init(){
@@ -21,21 +21,21 @@ int Motor_manager::teardown(){
     //TODO : the real teardown
 }
 
-int Motor_manager::set_motor_speed(float motor_s, float motor_n, float motor_e, float motor_w){
-    logger.log(LOG_INFO, "MOTOR MANAGER SPEED SET AT : %f, %f, %f, %f", motor_s, motor_n, motor_e, motor_w);
-    this->motor_s = motor_s;
-    this->motor_n = motor_n;
-    this->motor_e = motor_e;
-    this->motor_w = motor_w;
+int Motor_manager::set_motor_speed(float motor_x_m, float motor_x_p, float motor_y_m, float motor_y_p){
+    logger.log(LOG_INFO, "MOTOR MANAGER SPEED SET AT : %f, %f, %f, %f", motor_x_m, motor_x_p, motor_y_m, motor_y_p);
+    this->motor_x_m = motor_x_m;
+    this->motor_x_p = motor_x_p;
+    this->motor_y_m = motor_y_m;
+    this->motor_y_p = motor_y_p;
 
     //TODO : the real management
 
 }
 
-void Motor_manager::get_motor_speed(float &motor_s, float &motor_n, float &motor_e, float &motor_w){
-    motor_s = this->motor_s;
-    motor_n = this->motor_n;
-    motor_e = this->motor_e;
-    motor_w = this->motor_w;
+void Motor_manager::get_motor_speed(float &motor_x_m, float &motor_x_p, float &motor_y_m, float &motor_y_p){
+    motor_x_m = this->motor_x_m;
+    motor_x_p = this->motor_x_p;
+    motor_y_m = this->motor_y_m;
+    motor_y_p = this->motor_y_p;
 }
 
