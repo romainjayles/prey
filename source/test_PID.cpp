@@ -16,9 +16,7 @@
 #include <stdlib.h>
 #include <signal.h>
 
-#include <Orientation_manager.h>
-#include <Flight_contoller.h>
-#include <Motor_manager.h>
+#include <Flight_controller.h>
 #include <Logger.h>
 
 static bool run;
@@ -28,6 +26,22 @@ void handler(int v) {
 
 
 int main(int argv, char **argc){
+
+    Logger logger(LOG_TEST);
+    signal(SIGINT, handler);
+
+    Flight_controller flight_controller(logger);
+    if(flight_controller.init(ORIENTATION_MANAGER_UPDATE_FREQUENCY_MS) == -1){
+        logger.log(LOG_ERROR, "Error with the init of orientation_manager");
+        return -1;
+    }
+
+    run = true;
+    while(run){
+        usleep(ORIENTATION_MANAGER_UPDATE_FREQUENCY_MS*1000);
+    }
+    flight_controller.teardown();
+
     return 0;
 }
 
