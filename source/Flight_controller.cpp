@@ -101,10 +101,14 @@ void Flight_controller::_main_task(){
     float roll_output, pitch_output, yaw_output;
     float derivative_roll_error = 0.0, derivative_pitch_error = 0.0, derivative_yaw_error = 0.0;
     float integrated_roll_error = 0.0, integrated_pitch_error = 0.0, integrated_yaw_error = 0.0;
+    float motor_x_m = 0.0, motor_x_p = 0.0, motor_y_m = 0.0, motor_y_p = 0.0;
 
     //TODO : check if dt is really update_frequency_ms between two thread wake up
     // local access should be quicker than accessing class attribute
     int dt = update_frequency_ms;
+
+    //TODO : will see if this method is ok
+    int moy_power = 50.0;
 
     while(run){
         flight_controller_lock.lock();
@@ -133,13 +137,31 @@ void Flight_controller::_main_task(){
 
         //TODO : check unity
 
-        roll_output = (KP_ROLL*roll_error) + (KD_ROLL*integrated_roll_error*dt) + (KI_ROLL*derivative_roll_error/dt);
-        pitch_output = (KP_PITCH*pitch_error) + (KD_PITCH*integrated_pitch_error*dt) + (KI_PITCH*derivative_pitch_error/dt);
-        yaw_output = (KP_YAW*yaw_error) + (KD_YAW*integrated_yaw_error*dt) + (KI_YAW*derivative_yaw_error/dt);
+        roll_output = K_ROLL*((KP_ROLL*roll_error) + (KD_ROLL*integrated_roll_error*dt) + (KI_ROLL*derivative_roll_error/dt));
+        pitch_output = K_PITCH*((KP_PITCH*pitch_error) + (KD_PITCH*integrated_pitch_error*dt) + (KI_PITCH*derivative_pitch_error/dt));
+        yaw_output = K_YAW*((KP_YAW*yaw_error) + (KD_YAW*integrated_yaw_error*dt) + (KI_YAW*derivative_yaw_error/dt));
+
+
+        //TODO: others should be added
+        if(roll_output > 0){
+            motor_x_m = moy_power + roll_output;
+            motor_x_p = moy_power;
+        }else{
+            motor_x_p = moy_power - roll_output;
+            motor_x_m = moy_power;
+        }
+
+        if(pitch_output > 0){
+            motor_y_p = moy_power + pitch_output;
+            motor_y_m = moy_power;
+        }else{
+            motor_y_m = moy_power - pitch_output;
+            motor_y_p = moy_power;
+        }
 
         //TODO find the right scale to adapt the output from the PID to [0-100]
         flight_controller_lock.unlock();
-        logger.log(LOG_DEBUG, "PID output : %f %f %f", roll_output, pitch_output, yaw_output);
+        logger.log(LOG_TEST, "TEST_PID::%f %f %f %f", motor_x_m, motor_x_p, motor_y_m, motor_y_p);
 
         // We save the current error for re-use
         previous_roll_error = roll_error;

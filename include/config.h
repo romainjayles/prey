@@ -37,14 +37,19 @@
 
 #define KP_ROLL 1.0
 #define KD_ROLL 1.0
-#define KI_ROLL 1.0
+#define KI_ROLL 0.0
+#define K_ROLL 0.0001
 
 #define KP_PITCH 1.0
 #define KD_PITCH 1.0
-#define KI_PITCH 1.0
+#define KI_PITCH 0.0
+#define K_PITCH 0.0001
 
 #define KP_YAW 1.0
 #define KD_YAW 1.0
-#define KI_YAW 1.0
+#define KI_YAW 0.0
+#define K_YAW 1.0
+
+
 
 #endif //PREY_CONFIG_H
