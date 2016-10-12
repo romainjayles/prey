@@ -141,26 +141,26 @@ void Flight_controller::_main_task(){
         pitch_output = K_PITCH*((KP_PITCH*pitch_error) + (KD_PITCH*integrated_pitch_error*dt) + (KI_PITCH*derivative_pitch_error/dt));
         yaw_output = K_YAW*((KP_YAW*yaw_error) + (KD_YAW*integrated_yaw_error*dt) + (KI_YAW*derivative_yaw_error/dt));
 
-
         //TODO: others should be added
-        if(roll_output > 0){
-            motor_x_m = moy_power + roll_output;
-            motor_x_p = moy_power;
-        }else{
-            motor_x_p = moy_power - roll_output;
-            motor_x_m = moy_power;
-        }
-
-        if(pitch_output > 0){
-            motor_y_p = moy_power + pitch_output;
-            motor_y_m = moy_power;
-        }else{
-            motor_y_m = moy_power - pitch_output;
-            motor_y_p = moy_power;
-        }
+        motor_x_m = moy_power + roll_output;
+        motor_x_p = moy_power - roll_output;
+        motor_y_p = moy_power + pitch_output;
+        motor_y_m = moy_power - pitch_output;
 
         //TODO find the right scale to adapt the output from the PID to [0-100]
         flight_controller_lock.unlock();
+
+        motor_x_m = min(motor_x_m, 100.0f);
+        motor_x_m = max(motor_x_m, 0.0f);
+
+        motor_x_p = min(motor_x_p, 100.0f);
+        motor_x_p = max(motor_x_p, 0.0f);
+
+        motor_y_m = min(motor_y_m, 100.0f);
+        motor_y_m = max(motor_y_m, 0.0f);
+
+        motor_y_p = min(motor_y_p, 100.0f);
+        motor_y_p = max(motor_y_p, 0.0f);
         logger.log(LOG_TEST, "TEST_PID::%f %f %f %f", motor_x_m, motor_x_p, motor_y_m, motor_y_p);
 
         // We save the current error for re-use

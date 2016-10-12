@@ -27,7 +27,7 @@ void handler(int v) {
 
 int main(int argv, char **argc){
 
-    Logger logger(LOG_TEST);
+    Logger logger(LOG_ERROR);
     signal(SIGINT, handler);
 
     Flight_controller flight_controller(logger);
