@@ -1,8 +1,8 @@
 import sys
 import subprocess
 import pygame
+import signal
 from pygame.locals import *
-
 
 
 LOCAL_COMMAND = ["./../source/test_PID"]
@@ -49,8 +49,15 @@ print "Launching the 3D representation of the position of the device"
 print " * For now the script has to be launch from the /script directory"
 print " * Update frequency set at " + str(frequency) + "ms"
 print " * Warning experiment show that python is too slow for processing at frequencies bellow 30ms"
+
 proc = subprocess.Popen(COMMAND_LINE + [str(frequency)], stdout=subprocess.PIPE)
 
+def signal_handler(signal_arg, frame):
+    proc.send_signal(signal.SIGINT)
+    proc.wait()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 
 def update_values():
     global x_m_out, x_p_out, y_m_out, y_p_out, maximum_value
