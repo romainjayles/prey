@@ -35,13 +35,13 @@
  * PID related constant
  */
 
-#define KP_ROLL 1.0
-#define KD_ROLL 1.0
+#define KP_ROLL 1.7
+#define KD_ROLL 0.3
 #define KI_ROLL 0.0
 #define K_ROLL 0.0001
 
-#define KP_PITCH 1.0
-#define KD_PITCH 1.0
+#define KP_PITCH 1.7
+#define KD_PITCH 0.3
 #define KI_PITCH 0.0
 #define K_PITCH 0.0001
 
